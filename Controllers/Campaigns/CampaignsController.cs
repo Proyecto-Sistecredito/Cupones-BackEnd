@@ -31,28 +31,8 @@ namespace Cupones.Controllers
             }
         }
 
-        
-        [HttpGet("{id}")]
-        public ActionResult<Campaña> GetCampaign(int id)
-        {
-            try
-            {
-                var campaign = _campañasService.GetById(id);
-
-                if (campaign == null)
-                {
-                    return NotFound($"Campaign with Id = {id} not found");
-                }
-
-                return Ok(campaign);
-            }
-            catch (Exception)
-            {
-                return StatusCode(500, "Error retrieving data from the database");
-            }
-        }
-
     }
 }
+
 
 
