@@ -10,19 +10,19 @@ namespace Cupones.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CampañasSearchController : ControllerBase
+    public class CouponsSearchController : ControllerBase
     {
-        public readonly ICampañasService _campañasService;
+        public readonly ICuponesService _cuponesService;
 
-        public CampañasSearchController(ICampañasService campañasService)
+        public CouponsSearchController(ICuponesService cuponesService)
         {
-            _campañasService = campañasService;
+            _cuponesService = cuponesService;
         }
 [HttpGet]
         [Route("api/users/search/{consulta}")]
-        public IEnumerable<Campaña> Search(string consulta)
+        public IEnumerable<Cupon> Search(string consulta)
         {
-            return _campañasService.Search(consulta);
+            return _cuponesService.Search(consulta);
         }
     }
 }

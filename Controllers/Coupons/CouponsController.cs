@@ -10,11 +10,11 @@ namespace Cupones.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CuponesController : ControllerBase
+    public class CouponsController : ControllerBase
     {
         public readonly ICuponesService _cuponesService;
 
-        public CuponesController(ICuponesService cuponesService)
+        public CouponsController(ICuponesService cuponesService)
         {
             _cuponesService = cuponesService;
         }

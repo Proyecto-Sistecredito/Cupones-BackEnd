@@ -10,20 +10,19 @@ namespace Cupones.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CampañasUpdateController : ControllerBase
+    public class CampaignsSearchController : ControllerBase
     {
         public readonly ICampañasService _campañasService;
 
-        public CampañasUpdateController(ICampañasService campañasService)
+        public CampaignsSearchController(ICampañasService campañasService)
         {
             _campañasService = campañasService;
         }
-
-        [HttpPut("{id}")]
-        [Route("api/campañas/{id}/update")]
-        public string Update(int id, [FromBody] Campaña campaña)
+        [HttpGet]
+        [Route("api/users/search/{consulta}")]
+        public IEnumerable<Campaña> Search(string consulta)
         {
-            return "Falta actualizar";
+            return _campañasService.Search(consulta);
         }
     }
 }

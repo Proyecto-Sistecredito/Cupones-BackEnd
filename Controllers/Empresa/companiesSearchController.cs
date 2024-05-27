@@ -10,11 +10,11 @@ namespace Cupones.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class EmpresasSearchController : ControllerBase
+    public class companiesSearchController : ControllerBase
     {
         public readonly IEmpresasService _empresasService;
 
-        public EmpresasSearchController(IEmpresasService empresasService)
+        public companiesSearchController(IEmpresasService empresasService)
         {
             _empresasService = empresasService;
         }
