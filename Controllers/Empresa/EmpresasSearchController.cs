@@ -18,7 +18,12 @@ namespace Cupones.Controllers
         {
             _empresasService = empresasService;
         }
-  
+   [HttpGet]
+        [Route("api/users/search/{consulta}")]
+        public IEnumerable<Empresa> Search(string consulta)
+        {
+            return _empresasService.Search(consulta);
+        }
     }
 }
 
