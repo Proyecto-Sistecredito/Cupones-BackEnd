@@ -20,6 +20,11 @@ namespace Cupones.Controllers
       _empresasService = empresasService;
     }
 
-  
+    [HttpPut("{id}")]
+    [Route("api/empresas/{id}/update")]
+    public string Update(int id, [FromBody] Empresa empresa)
+    {
+      return "Falta actualizar";
+    }
   }
 }

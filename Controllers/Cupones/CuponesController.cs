@@ -19,5 +19,19 @@ namespace Cupones.Controllers
             _cuponesService = cuponesService;
         }
 
+        [HttpGet]
+        [Route("api/cupones")]
+        public IEnumerable<Cupon> GetCupons()
+        {
+            return _cuponesService.GetAll();
+        }
+
+        [HttpGet]
+        [Route("api/cupones/{id}")]
+        public Cupon Details(int id)
+        {
+            return _cuponesService.GetById(id);
+        }
+     
     }
 }

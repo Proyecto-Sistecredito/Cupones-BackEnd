@@ -19,6 +19,13 @@ namespace Cupones.Controllers
         {
             _cuponesService = cuponesService;
         }
-       
+        [HttpPost]
+        [Route("api/cupones")]
+
+        public IActionResult Create([FromBody] Cupon cupon)
+        {
+            _cuponesService.add(cupon);
+            return Ok();
+        }
     }
 }

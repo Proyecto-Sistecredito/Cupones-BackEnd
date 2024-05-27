@@ -18,7 +18,13 @@ namespace Cupones.Controllers
         {
             _empresasService = empresasService;
           }
-
+[HttpPost]
+        [Route("api/empresas")]
+        public IActionResult Create([FromBody] Empresa empresa)
+        {
+            _empresasService.add(empresa);
+            return Ok();
+        }
     
     }
 }

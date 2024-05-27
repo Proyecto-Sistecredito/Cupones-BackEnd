@@ -8,7 +8,6 @@ using Cupones.Services;
 
 namespace Cupones.Controllers
 {
-    
     [ApiController]
     [Route("api/[controller]")]
     public class CampañasController : ControllerBase
@@ -20,5 +19,20 @@ namespace Cupones.Controllers
             _campañasService = campañasService;
         }
 
+        [HttpGet]
+        [Route("api/campañas")]
+        public IEnumerable<Campaña> GetCampaigns()
+        {
+            return _campañasService.GetAll();
+        }
+
+        [HttpGet]
+        [Route("api/campañas/{id}")]
+        public Campaña Details(int id)
+        {
+            return _campañasService.GetById(id);
+        }
+
+       
     }
 }
