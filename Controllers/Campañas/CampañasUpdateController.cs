@@ -19,6 +19,11 @@ namespace Cupones.Controllers
             _campañasService = campañasService;
         }
 
-        
+        [HttpPut("{id}")]
+        [Route("api/campañas/{id}/update")]
+        public string Update(int id, [FromBody] Campaña campaña)
+        {
+            return "Falta actualizar";
+        }
     }
 }
