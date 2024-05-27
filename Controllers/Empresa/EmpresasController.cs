@@ -18,7 +18,21 @@ namespace Cupones.Controllers
         {
             _empresasService = empresasService;
         }
-  
+    [HttpGet]
+        [Route("api/users")]
+        public IEnumerable<Empresa> Getempresa()
+        {
+            return _empresasService.GetAll();
+        }
+
+        [HttpGet]
+        [Route("api/users/{id}")]
+        public Empresa Details(int id)
+        {
+            return _empresasService.GetById(id);
+        }
+
+       
     }
 }
 
