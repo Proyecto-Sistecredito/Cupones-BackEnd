@@ -19,6 +19,12 @@ namespace Cupones.Controllers
             _campañasService = campañasService;
         }
 
-      
+        [HttpPost]
+        [Route("api/campañas")]
+        public IActionResult Create([FromBody] Campaña campaña)
+        {
+            _campañasService.add(campaña);
+            return Ok();
+        }
     }
 }
