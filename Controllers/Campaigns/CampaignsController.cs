@@ -17,7 +17,6 @@ namespace Cupones.Controllers
             _campañasService = campañasService;
         }
 
-
         [HttpGet]
         public ActionResult<IEnumerable<Campaña>> GetCampaigns()
         {
@@ -31,8 +30,22 @@ namespace Cupones.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetCampaign(int id)
+        {
+            try
+            {
+                var campaign = _campañasService.GetById(id);
+                if (campaign == null)
+                {
+                    return NotFound($"Campaign with Id = {id} not found");
+                }
+                return Ok(campaign);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error retrieving campaign with id {id}: {ex.Message}");
+            }
+        }
     }
 }
-
-
-
