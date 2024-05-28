@@ -38,7 +38,7 @@ CREATE TABLE Cupones (
     IdUsuario INT NOT NULL,
     IdTipoUso INT NOT NULL,
     IdCampaña INT NOT NULL,
-    IdActivo INT NOT NULL,
+    IdEstado INT NOT NULL,
     FOREIGN KEY (IdUsuarioMarketing) REFERENCES UsuariosMarketing(Id),
     FOREIGN KEY (IdTipoCupon) REFERENCES TiposCupones(Id),
     FOREIGN KEY (IdRedimido) REFERENCES Redimido(Id),
@@ -74,11 +74,11 @@ CREATE TABLE Roles (
 -- Datos en la tabla Roles
 INSERT INTO Roles (Tipo) VALUES ('Administrador'), ('UsuarioMarketing');
 
-CREATE TABLE Activo (
+CREATE TABLE Estado (
     Id INT AUTO_INCREMENT PRIMARY KEY,
-    Estado VARCHAR(5) NOT NULL
+    Activo VARCHAR(5) NOT NULL
 );
-INSERT INTO Activo (Estado) VALUES ('si'), ('no');
+INSERT INTO Estado (Actito) VALUES ('si'), ('no');
 -- Tabla: TiposCupones
 CREATE TABLE TiposCupones (
     Id INT AUTO_INCREMENT PRIMARY KEY,

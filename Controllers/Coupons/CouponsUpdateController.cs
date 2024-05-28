@@ -20,43 +20,51 @@ namespace Cupones.Controllers
             _couponsService = couponsService;
         }
 
-      [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] Cupon cupon)
+    [HttpPut("{id}")]
+public IActionResult Update(int id, [FromBody] Cupon cupon)
+{
+    try
+    {
+        // Verifica si la campaña recibida es nula
+        if (cupon == null)
         {
-            try
-            {
-                // Verifica si la campaña recibida es nula
-                if (cupon == null)
-                {
-                    // Devuelve un BadRequest si la campaña es nula
-                    return BadRequest("Campaña data is null");
-                }
+            // Devuelve un BadRequest si la campaña es nula
+            return BadRequest("Campaña data is null");
+        }
 
-                // Verifica si el ID de la campaña coincide con el ID proporcionado en la ruta
-                if (id != cupon.Id)
-                {
-                    // Devuelve un BadRequest si el ID de la campaña no coincide con el ID en la ruta
-                    return BadRequest("ID mismatch between route parameter and cupon data");
-                }
+        // Verifica si el ID de la campaña coincide con el ID proporcionado en la ruta
+        if (id != cupon.Id)
+        {
+            // Devuelve un BadRequest si el ID de la campaña no coincide con el ID en la ruta
+            return BadRequest("ID mismatch between route parameter and cupon data");
+        }
 
-                var existingCampaign = _couponsService.GetById(id);
-                if (existingCampaign == null)
-                {
-                    // Devuelve un NotFound si la campaña no existe
-                    return NotFound($"Campaign with Id = {id} not found");
-                }
+        var existingCoupon = _couponsService.GetById(id);
+        if (existingCoupon == null)
+        {
+            // Devuelve un NotFound si el cupón no existe
+            return NotFound($"Cupón with Id = {id} not found");
+        }
 
-                // Actualiza la campaña
-                _couponsService.update(cupon);
+        // Verifica si el cupón está redimido
+        if (existingCoupon.IdRedimido != 0)
+        {
+            // Si el cupón está redimido, devuelve un BadRequest con el mensaje correspondiente
+            return BadRequest("Los cupones entregados previamente no son válidos para nuevas transacciones");
+        }
 
-                // Devuelve un resultado Ok con un mensaje indicando que la campaña se ha actualizado correctamente
-                return Ok("Campaign updated successfully");
-            }
-            catch (Exception ex)
-            {
-                // Devuelve un estado de error interno del servidor (500) con un mensaje descriptivo
-                return StatusCode(500, $"Error updating campaign: {ex.Message}");
-            }
-        } 
+        // Actualiza el cupón
+        _couponsService.update(cupon);
+
+        // Devuelve un resultado Ok con un mensaje indicando que el cupón se ha actualizado correctamente
+        return Ok("Cupón updated successfully");
+    }
+    catch (Exception ex)
+    {
+        // Devuelve un estado de error interno del servidor (500) con un mensaje descriptivo
+        return StatusCode(500, $"Error updating coupon: {ex.Message}");
     }
 }
+    }
+}
+
