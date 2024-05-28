@@ -12,34 +12,34 @@ namespace Cupones.Controllers
     [Route("api/[controller]")]
     public class CompaniesController : ControllerBase
     {
-        public readonly IEmpresasService _empresasService;
+        public readonly ICompaniesService _companiesService;
 
-        public CompaniesController(IEmpresasService empresasService)
+        public CompaniesController(ICompaniesService companiesService)
         {
-            _empresasService = empresasService;
+            _companiesService = companiesService;
         }
-    [HttpGet]
-     
-        public ActionResult<IEnumerable<Empresa>> Getempresa()
-        {
-             try
-    {
-        var company = _empresasService.GetAll(); // Obtiene todos los cupones del servicio
-        return Ok(company); // Devuelve un resultado Ok con los cupones recuperados
-    }
-    catch (Exception ex)
-    {
-        // Captura cualquier excepción y devuelve un estado de error interno del servidor (código 500) con un mensaje descriptivo
-        return StatusCode(500, $"Error al recuperar los cupones: {ex.Message}");
-    }
-        }
+        [HttpGet]
 
-               [HttpGet("{id}")]
-        public IActionResult GetCupon(int id)
+        public ActionResult<IEnumerable<Empresa>> GetCompanies()
         {
             try
             {
-                var company = _empresasService.GetById(id); // Obtiene el cupón con el ID especificado del servicio
+                var company = _companiesService.GetAll(); // Obtiene todos los cupones del servicio
+                return Ok(company); // Devuelve un resultado Ok con los cupones recuperados
+            }
+            catch (Exception ex)
+            {
+                // Captura cualquier excepción y devuelve un estado de error interno del servidor (código 500) con un mensaje descriptivo
+                return StatusCode(500, $"Error al recuperar los cupones: {ex.Message}");
+            }
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetCompany(int id)
+        {
+            try
+            {
+                var company = _companiesService.GetById(id); // Obtiene el cupón con el ID especificado del servicio
                 if (company == null)
                 {
                     // Si el cupón no existe, devuelve un NotFound con un mensaje indicando que no se encontró el cupón
@@ -53,7 +53,7 @@ namespace Cupones.Controllers
                 return StatusCode(500, $"Error retrieving cupon with id {id}: {ex.Message}");
             }
         }
-       
+
     }
 }
 

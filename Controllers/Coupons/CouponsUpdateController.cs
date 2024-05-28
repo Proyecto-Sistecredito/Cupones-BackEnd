@@ -9,18 +9,18 @@ using Cupones.Services;
 
 namespace Cupones.Controllers
 {
-      [ApiController]
+    [ApiController]
     [Route("api/[controller]")]
     public class CouponsUpdateController : ControllerBase
     {
-        public readonly ICuponesService _cuponesService;
+        public readonly ICouponsService _couponsService;
 
-        public CouponsUpdateController( ICuponesService cuponesService)
+        public CouponsUpdateController(ICouponsService couponsService)
         {
-            _cuponesService = cuponesService;
+            _couponsService = couponsService;
         }
 
-   [HttpPut("{id}")]
+        [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody] Cupon cupon)
         {
             try
@@ -39,7 +39,7 @@ namespace Cupones.Controllers
                     return BadRequest("ID mismatch between route parameter and cupon data");
                 }
 
-                var existingCampaign = _cuponesService.GetById(id);
+                var existingCampaign = _couponsService.GetById(id);
                 if (existingCampaign == null)
                 {
                     // Devuelve un NotFound si la campaña no existe
@@ -47,7 +47,7 @@ namespace Cupones.Controllers
                 }
 
                 // Actualiza la campaña
-                _cuponesService.update(cupon);
+                _couponsService.update(cupon);
 
                 // Devuelve un resultado Ok con un mensaje indicando que la campaña se ha actualizado correctamente
                 return Ok("Campaign updated successfully");

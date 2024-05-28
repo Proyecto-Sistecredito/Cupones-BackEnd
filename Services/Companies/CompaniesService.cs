@@ -43,14 +43,14 @@ namespace Cupones.Services
         {
             _context.Empresas.Update(empresa);
             _context.SaveChanges();
-        }    
+        }
 
-       public IEnumerable<Empresa> Search(string consulta)
-{
-    return _context.Empresas
-        .Where(e => e.Nombre.Contains(consulta) || e.Nit.Contains(consulta))
-        .ToList();
-}
+        public IEnumerable<Empresa> Search(string consulta)
+        {
+            return _context.Empresas
+                .Where(e => e.Nombre.Contains(consulta) || e.Nit.Contains(consulta))
+                .ToList();
+        }
     }
 }
 

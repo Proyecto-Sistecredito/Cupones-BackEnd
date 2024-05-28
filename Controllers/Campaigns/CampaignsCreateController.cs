@@ -9,11 +9,11 @@ namespace Cupones.Controllers
     [Route("api/[controller]")]
     public class CampaignsCreateController : ControllerBase
     {
-        private readonly ICampañasService _campañasService;
+        private readonly ICampaignsService _campaignsService;
 
-        public CampaignsCreateController(ICampañasService campañasService)
+        public CampaignsCreateController(ICampaignsService campaignsService)
         {
-            _campañasService = campañasService;
+            _campaignsService = campaignsService;
         }
 
         [HttpPost]
@@ -29,7 +29,7 @@ namespace Cupones.Controllers
                 }
 
                 // Agrega la nueva campaña
-                _campañasService.add(campaña);
+                _campaignsService.add(campaña);
 
                 // Devuelve un resultado Ok con la campaña creada
                 return Ok(campaña);

@@ -10,11 +10,11 @@ namespace Cupones.Controllers
     [Route("api/[controller]")]
     public class CouponsSearchController : ControllerBase
     {
-        private readonly ICuponesService _cuponesService;
+        private readonly ICouponsService _couponsService;
 
-        public CouponsSearchController(ICuponesService cuponesService)
+        public CouponsSearchController(ICouponsService couponsService)
         {
-            _cuponesService = cuponesService;
+            _couponsService = couponsService;
         }
 
         [HttpGet]
@@ -30,7 +30,7 @@ namespace Cupones.Controllers
                 }
 
                 // Realiza la búsqueda de cupones utilizando la consulta
-                var result = _cuponesService.Search(consulta);
+                var result = _couponsService.Search(consulta);
 
                 // Devuelve un resultado Ok con el resultado de la búsqueda
                 return Ok(result);

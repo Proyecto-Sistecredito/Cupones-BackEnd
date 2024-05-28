@@ -9,11 +9,11 @@ namespace Cupones.Controllers
     [Route("api/[controller]")]
     public class CampaignsUpdateController : ControllerBase
     {
-        private readonly ICampañasService _campañasService;
+        private readonly ICampaignsService _campaignsService;
 
-        public CampaignsUpdateController(ICampañasService campañasService)
+        public CampaignsUpdateController(ICampaignsService campaignsService)
         {
-            _campañasService = campañasService;
+            _campaignsService = campaignsService;
         }
 
         [HttpPut("{id}")]
@@ -35,7 +35,7 @@ namespace Cupones.Controllers
                     return BadRequest("ID mismatch between route parameter and campaign data");
                 }
 
-                var existingCampaign = _campañasService.GetById(id);
+                var existingCampaign = _campaignsService.GetById(id);
                 if (existingCampaign == null)
                 {
                     // Devuelve un NotFound si la campaña no existe
@@ -43,7 +43,7 @@ namespace Cupones.Controllers
                 }
 
                 // Actualiza la campaña
-                _campañasService.update(campaña);
+                _campaignsService.update(campaña);
 
                 // Devuelve un resultado Ok con un mensaje indicando que la campaña se ha actualizado correctamente
                 return Ok("Campaign updated successfully");

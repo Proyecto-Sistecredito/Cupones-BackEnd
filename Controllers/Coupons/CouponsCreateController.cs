@@ -9,11 +9,11 @@ namespace Cupones.Controllers
     [Route("api/[controller]")]
     public class CouponsCreateController : ControllerBase
     {
-        private readonly ICuponesService _cuponesService;
+        private readonly ICouponsService _couponsService;
 
-        public CouponsCreateController(ICuponesService cuponesService)
+        public CouponsCreateController(ICouponsService couponsService)
         {
-            _cuponesService = cuponesService;
+            _couponsService = couponsService;
         }
 
         [HttpPost]
@@ -29,7 +29,7 @@ namespace Cupones.Controllers
                 }
 
                 // Agrega el nuevo cupón
-                _cuponesService.add(cupon);
+                _couponsService.add(cupon);
 
                 // Devuelve un resultado Ok con el cupón creado
                 return Ok(cupon);

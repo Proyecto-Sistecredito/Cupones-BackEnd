@@ -9,11 +9,11 @@ namespace Cupones.Controllers
     [Route("api/[controller]")]
     public class CampaignsSearchController : ControllerBase
     {
-        private readonly ICampañasService _campañasService;
+        private readonly ICampaignsService _campaignsService;
 
-        public CampaignsSearchController(ICampañasService campañasService)
+        public CampaignsSearchController(ICampaignsService campaignsService)
         {
-            _campañasService = campañasService;
+            _campaignsService = campaignsService;
         }
 
         [HttpGet]
@@ -29,7 +29,7 @@ namespace Cupones.Controllers
                 }
 
                 // Realiza la búsqueda de campañas utilizando la consulta
-                var result = _campañasService.Search(consulta);
+                var result = _campaignsService.Search(consulta);
 
                 // Devuelve un resultado Ok con el resultado de la búsqueda
                 return Ok(result);

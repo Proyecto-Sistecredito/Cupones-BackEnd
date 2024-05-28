@@ -9,37 +9,37 @@ using Cupones.Services;
 
 namespace Cupones.Controllers
 {
-  [ApiController]
-  [Route("api/[controller]")]
-  public class CompaniesUpdateController : ControllerBase
-  {
-    public readonly IEmpresasService _empresasService;
-
-    public CompaniesUpdateController(IEmpresasService empresasService)
+    [ApiController]
+    [Route("api/[controller]")]
+    public class CompaniesUpdateController : ControllerBase
     {
-      _empresasService = empresasService;
-    }
+        public readonly ICompaniesService _companiesService;
 
-   [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] Cupon cupon)
+        public CompaniesUpdateController(ICompaniesService companiesService)
+        {
+            _companiesService = companiesService;
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody] Empresa empresa)
         {
             try
             {
                 // Verifica si la campaña recibida es nula
-                if (cupon == null)
+                if (empresa == null)
                 {
                     // Devuelve un BadRequest si la campaña es nula
                     return BadRequest("Campaña data is null");
                 }
 
                 // Verifica si el ID de la campaña coincide con el ID proporcionado en la ruta
-                if (id != cupon.Id)
+                if (id != empresa.Id)
                 {
                     // Devuelve un BadRequest si el ID de la campaña no coincide con el ID en la ruta
                     return BadRequest("ID mismatch between route parameter and cupon data");
                 }
 
-                var existingCampaign = _cuponesService.GetById(id);
+                var existingCampaign = _companiesService.GetById(id);
                 if (existingCampaign == null)
                 {
                     // Devuelve un NotFound si la campaña no existe
@@ -47,7 +47,7 @@ namespace Cupones.Controllers
                 }
 
                 // Actualiza la campaña
-                _cuponesService.update(cupon);
+                _companiesService.update(empresa);
 
                 // Devuelve un resultado Ok con un mensaje indicando que la campaña se ha actualizado correctamente
                 return Ok("Campaign updated successfully");
@@ -58,5 +58,5 @@ namespace Cupones.Controllers
                 return StatusCode(500, $"Error updating campaign: {ex.Message}");
             }
         }
-  }
+    }
 }

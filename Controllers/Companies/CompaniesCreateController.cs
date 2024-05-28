@@ -12,11 +12,11 @@ namespace Cupones.Controllers
     [Route("api/[controller]")]
     public class CompaniesCreateController : ControllerBase
     {
-        private readonly IEmpresasService _empresasService;
+        private readonly ICompaniesService _companiesService;
 
-        public CompaniesCreateController(IEmpresasService empresasService)
+        public CompaniesCreateController(ICompaniesService companiesService)
         {
-            _empresasService = empresasService;
+            _companiesService = companiesService;
         }
 
         [HttpPost]
@@ -32,7 +32,7 @@ namespace Cupones.Controllers
                 }
 
                 // Agrega la nueva empresa
-                _empresasService.add(empresa);
+                _companiesService.add(empresa);
 
                 // Devuelve un resultado Ok con la empresa creada
                 return Ok(empresa);
