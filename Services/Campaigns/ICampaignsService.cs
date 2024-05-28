@@ -6,7 +6,7 @@ using Cupones.Models;
 
 namespace Cupones.Services
 {
-    public interface ICampañasService
+    public interface ICampaignsService
     {
         IEnumerable<Campaña> GetAll();
 

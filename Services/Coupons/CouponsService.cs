@@ -7,11 +7,11 @@ using Cupones.Models;
 
 namespace Cupones.Services
 {
-    public class CuponesService : ICuponesService
+    public class CouponsService : ICouponsService
     {
         private readonly CuponesContext _context;
 
-        public CuponesService(CuponesContext context)
+        public CouponsService(CuponesContext context)
         {
             _context = context;
         }
