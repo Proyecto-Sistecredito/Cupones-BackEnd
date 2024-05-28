@@ -7,11 +7,11 @@ using Cupones.Data;
 
 namespace Cupones.Services
 {
-    public class EmpresasService : IEmpresasService
+    public class CompaniesService : ICompaniesService
     {
         private readonly CuponesContext _context;
 
-        public EmpresasService(CuponesContext context)
+        public CompaniesService(CuponesContext context)
         {
             _context = context;
         }

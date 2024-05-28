@@ -17,7 +17,9 @@ builder.Services.AddDbContext<CuponesContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("MySqlConnection"),
     Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.20-mysql")));
 
-builder.Services.AddScoped<ICuponesService, CuponesService>();
+builder.Services.AddScoped<ICampaignsService, CampaignsService>();
+builder.Services.AddScoped<ICouponsService, CouponsService>();
+builder.Services.AddScoped<ICompaniesService, CompaniesService>();
 
 var app = builder.Build();
 app.UseCors("AllowAnyOrigin");

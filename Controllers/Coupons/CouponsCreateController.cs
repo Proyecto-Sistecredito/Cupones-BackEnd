@@ -11,11 +11,11 @@ namespace Cupones.Controllers
 {
 [ApiController]
     [Route("[controller]")]
-    public class CuponesCreateController : ControllerBase
+    public class CouponsCreateController : ControllerBase
     {
         private readonly ICuponesService _cuponesService;
 
-        public CuponesCreateController(ICuponesService cuponesService)
+        public CouponsCreateController(ICuponesService cuponesService)
         {
             _cuponesService = cuponesService;
         }
@@ -24,8 +24,17 @@ namespace Cupones.Controllers
 
         public IActionResult Create([FromBody] Cupon cupon)
         {
-            _cuponesService.add(cupon);
-            return Ok();
+            try{
+                if(cupon == null){
+                    return BadRequest("Cupon data is null");
+                }
+                _cuponesService.add(cupon);
+                return Ok(cupon);
+            }
+            catch(Exception ex){
+                return StatusCode(500, $"Error creating campaign: {ex.Message}");
+            }
+         
         }
     }
 }
