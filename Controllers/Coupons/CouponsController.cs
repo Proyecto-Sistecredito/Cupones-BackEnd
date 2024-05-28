@@ -6,19 +6,19 @@ using Cupones.Services;
 
 namespace Cupones.Controllers
 {
-    [ApiController] // Indica que esta clase es un controlador de API
-    [Route("api/[controller]")] // Establece la ruta base para las acciones en este controlador
-    public class CouponsController : ControllerBase // Deriva de ControllerBase para obtener funcionalidad de controlador sin vistas
+    [ApiController] 
+    [Route("api/[controller]")] 
+    public class CouponsController : ControllerBase 
     {
-        private readonly ICuponesService _cuponesService; // Interfaz del servicio de cupones
+        private readonly ICuponesService _cuponesService; 
 
-        // Constructor que recibe una instancia del servicio de cupones
+        
         public CouponsController(ICuponesService cuponesService)
         {
-            _cuponesService = cuponesService; // Asigna el servicio de cupones al campo privado
+            _cuponesService = cuponesService; 
         }
 
-        // Método de acción HTTP GET que devuelve todos los cupones
+     
         [HttpGet]
         public IActionResult GetCupons()
         {
