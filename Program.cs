@@ -20,6 +20,7 @@ builder.Services.AddDbContext<CuponesContext>(options =>
 builder.Services.AddScoped<ICampaignsService, CampaignsService>();
 builder.Services.AddScoped<ICouponsService, CouponsService>();
 builder.Services.AddScoped<ICompaniesService, CompaniesService>();
+builder.Services.AddScoped<IValidationService, ValidationService>();
 
 var app = builder.Build();
 app.UseCors("AllowAnyOrigin");
