@@ -70,6 +70,20 @@ namespace Cupones.Controllers
                     }
                 }
 
+                if (coupon.IdTipoCupon == 1)
+                {
+                    try
+                    {
+                        var cuponAplicado = purchase.ValorCompra - int.Parse(coupon.Valor);
+
+                        _RedeemService.Redeem(coupon);
+                        return Ok($"El cupón {coupon.Nombre} se ha aplicado correctamente quedando tu compra en ${cuponAplicado}");
+                    } catch (Exception ex)
+                    {
+                        return StatusCode(500, $"Error al aplicar descuento a la compra: {ex.Message}");
+                    }
+                }
+
                 return Ok(coupon);
                 // return Ok($"El cupón {coupon.Nombre} con el código {coupon.Codigo} se ha redimido correctamente");
             }
