@@ -10,11 +10,11 @@ namespace Cupones.Controllers
     [Route("api/[controller]")]
     public class CampaignsController : ControllerBase
     {
-        private readonly ICampañasService _campañasService;
+        private readonly ICampaignsService _campaignsService;
 
-        public CampaignsController(ICampañasService campañasService)
+        public CampaignsController(ICampaignsService campaignsService)
         {
-            _campañasService = campañasService;
+            _campaignsService = campaignsService;
         }
 
         [HttpGet]
@@ -22,7 +22,7 @@ namespace Cupones.Controllers
         {
             try
             {
-                return Ok(_campañasService.GetAll());
+                return Ok(_campaignsService.GetAll());
             }
             catch (Exception)
             {
@@ -35,7 +35,7 @@ namespace Cupones.Controllers
         {
             try
             {
-                var campaign = _campañasService.GetById(id);
+                var campaign = _campaignsService.GetById(id);
                 if (campaign == null)
                 {
                     return NotFound($"Campaign with Id = {id} not found");

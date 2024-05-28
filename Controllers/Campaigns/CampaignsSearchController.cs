@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Cupones.Models;
 using Cupones.Services;
@@ -9,11 +12,11 @@ namespace Cupones.Controllers
     [Route("api/[controller]")]
     public class CampaignsSearchController : ControllerBase
     {
-        private readonly ICampañasService _campañasService;
+        public readonly ICampaignsService _campaignsService;
 
-        public CampaignsSearchController(ICampañasService campañasService)
+        public CampaignsSearchController(ICampaignsService campaignsService)
         {
-            _campañasService = campañasService;
+            _campaignsService = campaignsService;
         }
 
         [HttpGet]
@@ -29,7 +32,7 @@ namespace Cupones.Controllers
                 }
 
                 // Realiza la búsqueda de campañas utilizando la consulta
-                var result = _campañasService.Search(consulta);
+                var result = _campaignsService.Search(consulta);
 
                 // Devuelve un resultado Ok con el resultado de la búsqueda
                 return Ok(result);
@@ -39,6 +42,8 @@ namespace Cupones.Controllers
                 // Devuelve un estado de error interno del servidor (500) con un mensaje descriptivo
                 return StatusCode(500, $"Error searching campaigns: {ex.Message}");
             }
+            
         }
+
     }
 }

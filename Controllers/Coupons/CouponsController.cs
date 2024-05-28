@@ -6,40 +6,40 @@ using Cupones.Services;
 
 namespace Cupones.Controllers
 {
-    [ApiController] 
-    [Route("api/[controller]")] 
-    public class CouponsController : ControllerBase 
+    [ApiController]
+    [Route("api/[controller]")]
+    public class CouponsController : ControllerBase
     {
-        private readonly ICuponesService _cuponesService; 
+        private readonly ICouponsService _couponsService;
 
-        
-        public CouponsController(ICuponesService cuponesService)
+
+        public CouponsController(ICouponsService couponsService)
         {
-            _cuponesService = cuponesService; 
+            _couponsService = couponsService;
         }
 
-     
-       [HttpGet]
-public ActionResult<IEnumerable<Cupon>> GetCupons()
-{
-    try
-    {
-        var cupones = _cuponesService.GetAll(); // Obtiene todos los cupones del servicio
-        return Ok(cupones); // Devuelve un resultado Ok con los cupones recuperados
-    }
-    catch (Exception ex)
-    {
-        // Captura cualquier excepción y devuelve un estado de error interno del servidor (código 500) con un mensaje descriptivo
-        return StatusCode(500, $"Error al recuperar los cupones: {ex.Message}");
-    }
-}
-        // Método de acción HTTP GET que devuelve un cupón específico según su ID
-        [HttpGet("{id}")]
-        public IActionResult GetCupon(int id)
+
+        [HttpGet]
+        public ActionResult<IEnumerable<Cupon>> GetCoupons()
         {
             try
             {
-                var cupon = _cuponesService.GetById(id); // Obtiene el cupón con el ID especificado del servicio
+                var cupones = _couponsService.GetAll(); // Obtiene todos los cupones del servicio
+                return Ok(cupones); // Devuelve un resultado Ok con los cupones recuperados
+            }
+            catch (Exception ex)
+            {
+                // Captura cualquier excepción y devuelve un estado de error interno del servidor (código 500) con un mensaje descriptivo
+                return StatusCode(500, $"Error al recuperar los cupones: {ex.Message}");
+            }
+        }
+        // Método de acción HTTP GET que devuelve un cupón específico según su ID
+        [HttpGet("{id}")]
+        public IActionResult GetCoupon(int id)
+        {
+            try
+            {
+                var cupon = _couponsService.GetById(id); // Obtiene el cupón con el ID especificado del servicio
                 if (cupon == null)
                 {
                     // Si el cupón no existe, devuelve un NotFound con un mensaje indicando que no se encontró el cupón

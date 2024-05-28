@@ -8,9 +8,9 @@ public class Cupon
 
     public required string Descripcion { get; set; }
 
-    public DateOnly FechaInicio { get; set; }
+    public DateTime FechaInicio { get; set; }
 
-    public DateOnly FechaFin { get; set; }
+    public DateTime FechaFin { get; set; }
 
     public required string Valor { get; set; }
 
@@ -19,6 +19,8 @@ public class Cupon
     public required int UsosDisponibles { get; set; }
 
     public required string Codigo { get; set; }
+    
+    public int IdEstado { get; set; }
 
     public int IdUsuarioMarketing { get; set; }
 
@@ -31,4 +33,6 @@ public class Cupon
     public int IdTipoUso { get; set; }
 
     public int IdCampaña { get; set; }
+
+    public int IdActivo { get; set; }
 }

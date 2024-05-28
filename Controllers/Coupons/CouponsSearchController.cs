@@ -10,15 +10,15 @@ namespace Cupones.Controllers
     [Route("api/[controller]")]
     public class CouponsSearchController : ControllerBase
     {
-        private readonly ICuponesService _cuponesService;
+        public readonly ICouponsService _couponsService;
 
-        public CouponsSearchController(ICuponesService cuponesService)
+        public CouponsSearchController(ICouponsService couponsService)
         {
-            _cuponesService = cuponesService;
+            _couponsService = couponsService;
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<Cupon>> Search(string consulta)
+         [HttpGet]
+        public IActionResult Search(string consulta)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace Cupones.Controllers
                 }
 
                 // Realiza la búsqueda de cupones utilizando la consulta
-                var result = _cuponesService.Search(consulta);
+                var result = _couponsService.Search(consulta);
 
                 // Devuelve un resultado Ok con el resultado de la búsqueda
                 return Ok(result);
@@ -40,6 +40,7 @@ namespace Cupones.Controllers
                 // Devuelve un estado de error interno del servidor (500) con un mensaje descriptivo
                 return StatusCode(500, $"Error searching coupons: {ex.Message}");
             }
-        }
+        } 
+        
     }
 }
