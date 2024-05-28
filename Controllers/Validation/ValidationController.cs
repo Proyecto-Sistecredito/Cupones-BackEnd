@@ -32,7 +32,22 @@ namespace Cupones.Controllers
                     return NotFound($"Coupon with Id = {id} not found");
                 }
 
-                return Ok(coupon);
+                if (coupon.IdEstado == 2)
+                {
+                    return BadRequest("El cupón está Inactivo");
+                }
+
+                if (coupon.UsosDisponibles == 0)
+                {
+                    return BadRequest("El cupón no tiene mas usos");
+                }
+
+                if (coupon.FechaFin < DateTime.Now)
+                {
+                    return BadRequest("Fecha del cupón vencida");
+                }
+
+                return Ok($"El cupón {coupon.Nombre} con el código {coupon.Codigo} es redimible");
             }
             catch (Exception ex)
             {
