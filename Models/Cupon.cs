@@ -33,6 +33,4 @@ public class Cupon
     public int IdTipoUso { get; set; }
 
     public int IdCampaña { get; set; }
-
-    public int IdActivo { get; set; }
 }

@@ -13,7 +13,7 @@ CREATE TABLE Campañas (
 -- Tabla: Compras
 CREATE TABLE Compras (
     Id INT AUTO_INCREMENT PRIMARY KEY,
-    ValorCompra DOUBLE NOT NULL,
+    ValorCompra INT NOT NULL,
     FechaCompra DATETIME NOT NULL,
     IdUsuario INT NOT NULL,
     IdCupon INT NOT NULL,
@@ -180,4 +180,4 @@ VALUES ('Juan', 'Pérez', 'juan@example.com', '123456789', 'cedula');
 
 -- Insertar una nueva compra
 INSERT INTO Compras (ValorCompra, FechaCompra, IdUsuario, IdCupon)
-VALUES (100.00, '2024-05-28 15:30:00', 1, 1);
+VALUES (1000, '2024-05-28 15:30:00', 1, 1);

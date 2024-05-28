@@ -21,7 +21,7 @@ namespace Cupones.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetCampaign(int id)
+        public IActionResult Validation(int id)
         {
             try
             {
