@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Cupones.Models;
 using Cupones.Services;
@@ -9,7 +12,7 @@ namespace Cupones.Controllers
     [Route("api/[controller]")]
     public class CampaignsSearchController : ControllerBase
     {
-        private readonly ICampaignsService _campaignsService;
+        public readonly ICampaignsService _campaignsService;
 
         public CampaignsSearchController(ICampaignsService campaignsService)
         {
@@ -39,6 +42,8 @@ namespace Cupones.Controllers
                 // Devuelve un estado de error interno del servidor (500) con un mensaje descriptivo
                 return StatusCode(500, $"Error searching campaigns: {ex.Message}");
             }
+            
         }
+
     }
 }

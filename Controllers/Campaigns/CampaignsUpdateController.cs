@@ -16,7 +16,7 @@ namespace Cupones.Controllers
             _campaignsService = campaignsService;
         }
 
-        [HttpPut("{id}")]
+       [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody] Campaña campaña)
         {
             try
@@ -53,6 +53,6 @@ namespace Cupones.Controllers
                 // Devuelve un estado de error interno del servidor (500) con un mensaje descriptivo
                 return StatusCode(500, $"Error updating campaign: {ex.Message}");
             }
-        }
+        } 
     }
 }

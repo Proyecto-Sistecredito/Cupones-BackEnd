@@ -19,7 +19,7 @@ namespace Cupones.Controllers
             _companiesService = companiesService;
         }
         [HttpGet]
-        public ActionResult<IEnumerable<Empresa>> Search(string consulta)
+        public IActionResult Search(string consulta)
         {
             try
             {
@@ -43,10 +43,7 @@ namespace Cupones.Controllers
             }
         }
 
-        public IEnumerable<Empresa> SearchCompany(string consulta)
-        {
-            return _companiesService.Search(consulta);
-        }
+      
     }
 }
 
