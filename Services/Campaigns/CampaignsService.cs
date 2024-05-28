@@ -7,11 +7,11 @@ using Cupones.Models;
 
 namespace Cupones.Services
 {
-    public class CampañasService : ICampañasService
+    public class CampaignsService : ICampaignsService
     {
         private readonly CuponesContext _context;
 
-        public CampañasService(CuponesContext context)
+        public CampaignsService(CuponesContext context)
         {
             _context = context;
         }
