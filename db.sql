@@ -32,13 +32,14 @@ CREATE TABLE Cupones (
     Usabilidad INT NOT NULL,
     UsosDisponibles INT NOT NULL,
     Codigo VARCHAR(255) NOT NULL,
+    IdEstado INT NOT NULL,
     IdUsuarioMarketing INT NOT NULL,
     IdTipoCupon INT NOT NULL,
     IdRedimido INT NOT NULL,
     IdUsuario INT NOT NULL,
     IdTipoUso INT NOT NULL,
     IdCampaña INT NOT NULL,
-    IdEstado INT NOT NULL,
+    FOREIGN KEY (IdEstado) REFERENCES Estado(Id),
     FOREIGN KEY (IdUsuarioMarketing) REFERENCES UsuariosMarketing(Id),
     FOREIGN KEY (IdTipoCupon) REFERENCES TiposCupones(Id),
     FOREIGN KEY (IdRedimido) REFERENCES Redimido(Id),
@@ -47,6 +48,10 @@ CREATE TABLE Cupones (
     FOREIGN KEY (IdCampaña) REFERENCES Campañas(Id)
     FOREIGN KEY (IdActivo) REFERENCES Activo(Id)
 );
+
+DROP TABLE `Cupones`
+
+INSERT INTO `Cupones` (`Nombre`, `Descripcion`, `FechaInicio`, `FechaFin`, `Valor`, `Usabilidad`, `UsosDisponibles`, `Codigo`, `IdEstado`, `IdUsuarioMarketing`, `IdTipoCupon`, `IdRedimido`, `IdUsuario`, `IdTipoUso`, `IdCampaña`) VALUES ('Celulares20', 'Celulares con 20% de descuento', '2024-05-27 01:09:39', '2024-05-28 06:09:34', '20%', '1', '1', 'BF24CC6PTJYQ', "1", '1', '3', '2', '1', '1', '1'), ('Celulares20', 'Celulares con 20% de descuento', '2024-05-28 06:31:50', '2024-05-28 06:31:50', '20%', '1', '0', 'BF24AAAA', "2", '1', '3', '1', '1', '1', '1')
 
 -- Tabla: Empresas
 CREATE TABLE Empresas (
@@ -64,6 +69,17 @@ CREATE TABLE Redimido (
 
 -- Datos en la tabla Redimido
 INSERT INTO Redimido (Estado) VALUES ('si'), ('no');
+
+-- Tabla: Estado
+CREATE TABLE Estado (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Estado VARCHAR(20) NOT NULL
+);
+
+DROP TABLE `Estado`
+
+-- Datos en la tabla Estado
+INSERT INTO Estado (Estado) VALUES ('Activo'), ('Inactivo');
 
 -- Tabla: Roles
 CREATE TABLE Roles (
@@ -86,7 +102,7 @@ CREATE TABLE TiposCupones (
 );
 
 -- Datos en la tabla TiposCupones
-INSERT INTO TiposCupones (Tipo) VALUES ('valorvariable'), ('valorfijo'), ('porcentajevariable'), ('procentajefijo');
+INSERT INTO TiposCupones (Tipo) VALUES ('Valorvariable'), ('Valorfijo'), ('Porcentajevariable'), ('Porcentajefijo');
 
 -- Tabla: TiposDocumentos
 CREATE TABLE TiposDocumentos (
@@ -113,8 +129,11 @@ CREATE TABLE Usuarios (
     Apellido VARCHAR(50) NOT NULL,
     Email VARCHAR(255) NOT NULL UNIQUE,
     Documento VARCHAR(25) NOT NULL UNIQUE,
-    TipoDocumento VARCHAR(50) NOT NULL
+    IdTipoDocumento INT NOT NULL,
+    FOREIGN KEY (IdTipoDocumento) REFERENCES TiposDocumentos(Id)
 );
+
+DROP TABLE Usuarios;
 
 -- Tabla: UsuariosMarketing
 CREATE TABLE UsuariosMarketing (

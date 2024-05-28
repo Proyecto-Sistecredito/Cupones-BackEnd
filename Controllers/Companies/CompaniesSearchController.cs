@@ -42,8 +42,6 @@ namespace Cupones.Controllers
                 return StatusCode(500, $"Error searching coupons: {ex.Message}");
             }
         }
-
-      
     }
 }
 

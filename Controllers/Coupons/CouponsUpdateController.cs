@@ -19,7 +19,6 @@ namespace Cupones.Controllers
         {
             _couponsService = couponsService;
         }
-
     [HttpPut("{id}")]
 public IActionResult Update(int id, [FromBody] Cupon cupon)
 {

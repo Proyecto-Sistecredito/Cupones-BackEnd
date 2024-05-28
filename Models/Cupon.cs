@@ -19,7 +19,7 @@ public class Cupon
     public required int UsosDisponibles { get; set; }
 
     public required string Codigo { get; set; }
-    
+  
     public int IdEstado { get; set; }
 
     public int IdUsuarioMarketing { get; set; }

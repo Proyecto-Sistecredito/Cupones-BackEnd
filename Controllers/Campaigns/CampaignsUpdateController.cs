@@ -15,7 +15,7 @@ namespace Cupones.Controllers
         {
             _campaignsService = campaignsService;
         }
-
+        
        [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody] Campaña campaña)
         {
@@ -44,7 +44,7 @@ namespace Cupones.Controllers
 
                 // Actualiza la campaña
                 _campaignsService.update(campaña);
-
+        
                 // Devuelve un resultado Ok con un mensaje indicando que la campaña se ha actualizado correctamente
                 return Ok("Campaign updated successfully");
             }

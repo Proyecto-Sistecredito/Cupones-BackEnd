@@ -33,7 +33,7 @@ namespace Cupones.Controllers
 
                 // Realiza la búsqueda de campañas utilizando la consulta
                 var result = _campaignsService.Search(consulta);
-
+        
                 // Devuelve un resultado Ok con el resultado de la búsqueda
                 return Ok(result);
             }
@@ -44,6 +44,5 @@ namespace Cupones.Controllers
             }
             
         }
-
     }
 }
