@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Cupones.Models;
 using Cupones.Services;
@@ -12,17 +10,15 @@ namespace Cupones.Controllers
     [Route("api/[controller]")]
     public class CouponsSearchController : ControllerBase
     {
-        public readonly ICuponesService _cuponesService;
+        private readonly ICuponesService _cuponesService;
 
         public CouponsSearchController(ICuponesService cuponesService)
         {
             _cuponesService = cuponesService;
         }
-[HttpGet]
-        [Route("api/users/search/{consulta}")]
-                public ActionResult<IEnumerable<Cupon>> Search(string consulta)
 
-
+        [HttpGet]
+        public ActionResult<IEnumerable<Cupon>> Search(string consulta)
         {
             try
             {
@@ -33,7 +29,7 @@ namespace Cupones.Controllers
                     return BadRequest("Consulta is null or empty");
                 }
 
-                // Realiza la búsqueda de campañas utilizando la consulta
+                // Realiza la búsqueda de cupones utilizando la consulta
                 var result = _cuponesService.Search(consulta);
 
                 // Devuelve un resultado Ok con el resultado de la búsqueda
@@ -42,7 +38,7 @@ namespace Cupones.Controllers
             catch (Exception ex)
             {
                 // Devuelve un estado de error interno del servidor (500) con un mensaje descriptivo
-                return StatusCode(500, $"Error searching campaigns: {ex.Message}");
+                return StatusCode(500, $"Error searching coupons: {ex.Message}");
             }
         }
     }

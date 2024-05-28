@@ -10,28 +10,49 @@ namespace Cupones.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class companiesController : ControllerBase
+    public class CompaniesController : ControllerBase
     {
         public readonly IEmpresasService _empresasService;
 
-        public companiesController(IEmpresasService empresasService)
+        public CompaniesController(IEmpresasService empresasService)
         {
             _empresasService = empresasService;
         }
     [HttpGet]
-        [Route("api/users")]
-        public IEnumerable<Empresa> Getempresa()
+     
+        public ActionResult<IEnumerable<Empresa>> Getempresa()
         {
-            return _empresasService.GetAll();
+             try
+    {
+        var company = _empresasService.GetAll(); // Obtiene todos los cupones del servicio
+        return Ok(company); // Devuelve un resultado Ok con los cupones recuperados
+    }
+    catch (Exception ex)
+    {
+        // Captura cualquier excepción y devuelve un estado de error interno del servidor (código 500) con un mensaje descriptivo
+        return StatusCode(500, $"Error al recuperar los cupones: {ex.Message}");
+    }
         }
 
-        [HttpGet]
-        [Route("api/users/{id}")]
-        public Empresa Details(int id)
+               [HttpGet("{id}")]
+        public IActionResult GetCupon(int id)
         {
-            return _empresasService.GetById(id);
+            try
+            {
+                var company = _empresasService.GetById(id); // Obtiene el cupón con el ID especificado del servicio
+                if (company == null)
+                {
+                    // Si el cupón no existe, devuelve un NotFound con un mensaje indicando que no se encontró el cupón
+                    return NotFound($"Cupon with id {id} not found");
+                }
+                return Ok(company); // Devuelve un resultado Ok con el cupón recuperado
+            }
+            catch (Exception ex)
+            {
+                // Captura cualquier excepción y devuelve un estado de error interno del servidor (código 500) con un mensaje descriptivo
+                return StatusCode(500, $"Error retrieving cupon with id {id}: {ex.Message}");
+            }
         }
-
        
     }
 }

@@ -19,21 +19,20 @@ namespace Cupones.Controllers
         }
 
      
-        [HttpGet]
-        public IActionResult GetCupons()
-        {
-            try
-            {
-                var cupons = _cuponesService.GetAll(); // Obtiene todos los cupones del servicio
-                return Ok(cupons); // Devuelve un resultado Ok con los cupones recuperados
-            }
-            catch (Exception ex)
-            {
-                // Captura cualquier excepción y devuelve un estado de error interno del servidor (código 500) con un mensaje descriptivo
-                return StatusCode(500, $"Error retrieving cupons: {ex.Message}");
-            }
-        }
-
+       [HttpGet]
+public ActionResult<IEnumerable<Cupon>> GetCupons()
+{
+    try
+    {
+        var cupones = _cuponesService.GetAll(); // Obtiene todos los cupones del servicio
+        return Ok(cupones); // Devuelve un resultado Ok con los cupones recuperados
+    }
+    catch (Exception ex)
+    {
+        // Captura cualquier excepción y devuelve un estado de error interno del servidor (código 500) con un mensaje descriptivo
+        return StatusCode(500, $"Error al recuperar los cupones: {ex.Message}");
+    }
+}
         // Método de acción HTTP GET que devuelve un cupón específico según su ID
         [HttpGet("{id}")]
         public IActionResult GetCupon(int id)
