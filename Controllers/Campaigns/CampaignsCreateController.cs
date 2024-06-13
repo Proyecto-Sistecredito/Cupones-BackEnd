@@ -6,7 +6,7 @@ using Cupones.Services;
 namespace Cupones.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/Campaigns/Create")]
     public class CampaignsCreateController : ControllerBase
     {
         private readonly ICampaignsService _campaignsService;
@@ -17,7 +17,7 @@ namespace Cupones.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] Campaña campaña)
+        public IActionResult Create(Campaña campaña)
         {
             try
             {

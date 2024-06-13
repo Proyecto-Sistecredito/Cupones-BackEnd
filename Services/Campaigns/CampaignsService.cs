@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Cupones.Data;
 using Cupones.Models;
 
@@ -16,12 +12,6 @@ namespace Cupones.Services
             _context = context;
         }
 
-        public void add(Campaña campaña)
-        {
-            _context.Add(campaña);
-            _context.SaveChanges();
-        }
-
         public IEnumerable<Campaña> GetAll()
         {
             return _context.Campañas.ToList();
@@ -30,6 +20,12 @@ namespace Cupones.Services
         public Campaña GetById(int id)
         {
             return _context.Campañas.Find(id);
+        }
+
+        public void add(Campaña campaña)
+        {
+            _context.Add(campaña);
+            _context.SaveChanges();
         }
 
         public void remove(int id)
@@ -45,10 +41,10 @@ namespace Cupones.Services
             _context.SaveChanges();
         }
         public IEnumerable<Campaña> Search(string consulta)
-{
-   return _context.Campañas
-        .Where(e => e.Nombre.Contains(consulta))
-        .ToList();
-}
+        {
+        return _context.Campañas
+                .Where(e => e.Nombre.Contains(consulta))
+                .ToList();
+        }
     }
 }

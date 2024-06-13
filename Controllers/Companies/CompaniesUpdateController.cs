@@ -10,7 +10,7 @@ using Cupones.Services;
 namespace Cupones.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/Companies/Update")]
     public class CompaniesUpdateController : ControllerBase
     {
         public readonly ICompaniesService _companiesService;
@@ -19,8 +19,9 @@ namespace Cupones.Controllers
         {
             _companiesService = companiesService;
         }
-    [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] Empresa empresa)
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, Empresa empresa)
         {
             try
             {

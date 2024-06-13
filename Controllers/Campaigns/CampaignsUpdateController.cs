@@ -6,7 +6,7 @@ using Cupones.Services;
 namespace Cupones.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/Campaigns/Update")]
     public class CampaignsUpdateController : ControllerBase
     {
         private readonly ICampaignsService _campaignsService;
@@ -16,8 +16,8 @@ namespace Cupones.Controllers
             _campaignsService = campaignsService;
         }
         
-       [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] Campaña campaña)
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, Campaña campaña)
         {
             try
             {

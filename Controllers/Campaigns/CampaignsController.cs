@@ -36,6 +36,7 @@ namespace Cupones.Controllers
             try
             {
                 var campaign = _campaignsService.GetById(id);
+                
                 if (campaign == null)
                 {
                     return NotFound($"Campaign with Id = {id} not found");

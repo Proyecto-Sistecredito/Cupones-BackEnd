@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Cupones.Models;
 using Cupones.Data;
 
@@ -48,7 +44,7 @@ namespace Cupones.Services
         public IEnumerable<Empresa> Search(string consulta)
         {
             return _context.Empresas
-                .Where(e => e.Nombre.Contains(consulta) || e.Nit.Contains(consulta))
+                .Where(e => e.Nombre.Contains(consulta))
                 .ToList();
         }
     }

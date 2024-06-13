@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Cupones.Models;
 using Cupones.Services;
@@ -9,7 +5,7 @@ using Cupones.Services;
 namespace Cupones.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/Companies/Create")]
     public class CompaniesCreateController : ControllerBase
     {
         private readonly ICompaniesService _companiesService;
@@ -20,7 +16,7 @@ namespace Cupones.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] Empresa empresa)
+        public IActionResult Create(Empresa empresa)
         {
             try
             {

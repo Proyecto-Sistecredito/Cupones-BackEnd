@@ -9,7 +9,7 @@ using Cupones.Services;
 namespace Cupones.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/Campaigns/Search")]
     public class CampaignsSearchController : ControllerBase
     {
         public readonly ICampaignsService _campaignsService;
